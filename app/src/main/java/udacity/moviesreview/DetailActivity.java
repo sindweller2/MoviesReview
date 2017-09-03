@@ -1,7 +1,6 @@
 package udacity.moviesreview;
 
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,6 +15,7 @@ public class DetailActivity extends AppCompatActivity {
     public ImageView poster;
     public TextView title;
     public TextView description;
+    public TextView release_date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,21 +27,20 @@ public class DetailActivity extends AppCompatActivity {
             throw new IllegalArgumentException("Detail activity must receive a movie parcelable");
         }
 
-        CollapsingToolbarLayout toolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-        toolbarLayout.setTitle(mMovie.getTitle());
-
-        backdrop = (ImageView) findViewById(R.id.backdrop);
-        title = (TextView) findViewById(R.id.movie_title);
-        description = (TextView) findViewById(R.id.movie_description);
+        setTitle(mMovie.getTitle());
         poster = (ImageView) findViewById(R.id.movie_poster);
+        release_date = (TextView) findViewById(R.id.release_date);
 
-        title.setText(mMovie.getTitle());
+
+        description = (TextView) findViewById(R.id.movie_description);
+
+
+        release_date.setText(mMovie.getReleaseDate());
+        //        runtime.setText(String.format("%d",mMovie.getVoteCount()) + " minutes");
+
         description.setText(mMovie.getDescription());
         Picasso.with(this)
                .load(mMovie.getPoster())
                .into(poster);
-        Picasso.with(this)
-               .load(mMovie.getBackdrop())
-               .into(backdrop);
     }
 }
