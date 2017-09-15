@@ -14,7 +14,7 @@ public class RestAdapterBuilder
             {
                 request.addEncodedQueryParam(key, valuekey);
             }
-        }).setLogLevel(RestAdapter.LogLevel.FULL).build();
+        }).build();
 
         return restAdapter;
     }
